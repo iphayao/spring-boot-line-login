@@ -33,15 +33,16 @@ public class LineLoginConfig {
 
     private ClientRegistration lineClientRegistration() {
         return ClientRegistration.withRegistrationId("line")
-                .clientId("1638277381")
-                .clientSecret("7cb1c4efd2074d520031a30960cc50f3")
+                .clientId("{CHANNEL_ID}")
+                .clientSecret("{CHANNEL_SECRET}")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .redirectUriTemplate("{baseUrl}/login/oauth2/code/{registrationId}")
-                .scope("openid")
+                .scope("profile")
                 .authorizationUri("https://access.line.me/oauth2/v2.1/authorize")
                 .tokenUri("https://api.line.me/oauth2/v2.1/token")
-                .userNameAttributeName(IdTokenClaimNames.SUB)
+                .userNameAttributeName("userId")
+                .userInfoUri("https://api.line.me/v2/profile")
                 .clientName("LINE")
                 .build();
     }
